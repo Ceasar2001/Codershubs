@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block pageContent %}
+<style>
+  #search-input {
+    width: 300px;
+  }
+</style>
+
+<!--Section: Content-->
+<section class="text-center">
+  <h4 class="mb-5"><strong>Posted Codes</strong></h4>
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card card-default rounded-0 shadow">
+        <div class="card-header">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <input type="text" id="search-input" class="form-control" placeholder="Search....">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="organization-list">
+    {% for post in posts %}
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="card shadow border">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+          <img src="{% if post.banner %}{{ post.banner.url }}{% else %}{{ MEDIA_URL}}/media/default/python-django.png{% endif %}" class="img-fluid post-banner bg-gradient bg-dark" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <div class="card-text truncate-3">{{ post.blog_post|safe }}</div>
+          <a href="{% url 'view-post' post.id %}" class="btn btn-primary">SEE MORE</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% if not posts %}
+  <center>No Blogs have been posted yet</center>
+  {% endif %}
+</section>
+
+{% block ScriptBlock %}
+<script>
+  $(function() {
+    // Handle search input
+    $('#search-input').on('input', function() {
+      var value = $(this).val().toLowerCase();
+      $('#organization-list .card').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+{% endblock ScriptBlock %}
+
+{% endblock pageContent %}

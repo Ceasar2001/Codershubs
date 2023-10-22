@@ -1,0 +1,137 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .div1, .div2 {
+    flex: 1;
+    width: 100%;
+  }
+  .div1 img{
+    width: 600px;
+  }
+  
+  .div3 {
+    flex: 1;
+    width: 100%;
+  }
+  .div2 {
+    padding-left: 20px;
+  }
+  
+  .divimg1, .divimg2, .divimg3, .divimg4 {
+    flex-basis: 25%;
+    flex-grow: 1;
+  }
+
+  .divimg1 img{
+    width: 300px;
+  }
+  .divimg2 img{
+    width: 300px;
+  }
+  .divimg3 img{
+    width: 300px;
+  }
+  .divimg4 img{
+    width: 300px;
+  }
+.containerdiv{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 3 images per row */
+        gap: 5px;
+        padding: 10px;
+        margin-left: 20px;
+}
+.banner40{
+  margin: 0;
+  background-image: url(./media/default/header.png); 
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  height: 650px;
+}
+
+button{
+  color: #ffffff !important;
+  border: solid;
+  border-width: 1px;
+  border-color: #525B88;
+  background-color: #86B049;
+  padding: 5px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+button:hover{
+  color: #ffffff !important;
+  background-color: #525B88;
+  border-color: #000000;
+}
+
+button a{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+button a:hover{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.threediv h3{
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.secondcontainer {
+  display: flex;
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.box1 {
+  flex: 1;
+  height: 200px;
+  padding-right: 30px;
+}
+.box2 {
+  flex: 1;
+  height: 200px;
+}
+
+.box2 img{
+  width: 600px;
+}
+
+/*Carousel CSS*/
+.swiper-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  margin-top: 250px;
+  overflow: inherit;
+}
+.swiper-container img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  overflow: inherit;
+}
+.swiper-container .swiper-scrollbar {
+  display: none;
+  overflow: inherit;
+}
+
+.swiper-button-next{
+  visibility: hidden;
+}
+
+.swiper-button-prev{
+  visibility: hidden;
+}
+
+.item img{
+  width: 100px;
+}

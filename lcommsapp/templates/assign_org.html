@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="{% url 'assign-org' %}">
+        {% csrf_token %}
+        <label for="officer">Select an officer:</label>
+        <select name="officer" id="officer">
+            {% for officer in officers %}
+                <option value="{{ officer.user.id }}">{{ officer.user.username }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="category">Select a category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Assign category">
+    </form>
+{% endblock %}
