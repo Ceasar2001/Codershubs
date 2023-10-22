@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block pageContent %}
+
+<!--Section: Content-->
+<div class="banner40"></div>
+<div class="container">
+  <div class="div1">
+    <img src="media\default\12345.jpg" alt="image">
+  </div>
+  <div class="div2">
+    <h2>CODERSHUB</h2>
+    <p>We at CODERSHUB we offers developers or students the ability to explore and discover various open-source projects, enabling them to learn from existing code, gain insights into best practices, and leverage reusable components. It serves as a knowledge-sharing platform, fostering collaboration and innovation within the developer community. Developers can contribute to existing projects by submitting bug fixes, implementing new features, or proposing enhancements through pull requests, ultimately improving the overall quality and functionality of the shared codebase.</p>
+      <button><a href="{% url 'register-user' %}">Register Now</a></button>
+    </div>
+</div>
+      <div class="threediv"><H3>programming languages</H3></div>
+          <div  class="containerdiv">
+          <div class="divimg1"><img src="media\default\C.jpg" alt=""></div>
+          <div class="divimg2"><img src="media\default\python.jpg" alt=""></div>
+          <div class="divimg3"><img src="media\default\ambot.jpg" alt=""></div>
+          <div class="divimg4"><img src="media\default\javalagi.jpg" alt=""></div>
+      </div>
+      <div class="secondcontainer">
+        <div class="box1">
+          <h2>About Us</h2>
+          <p>Our programming repository website serves as a vital resource for developers, empowering them to share, discover, and collaborate on code, fostering innovation, knowledge sharing, and collective problem-solving within the programming community.
+            <br>
+            <br>
+            It provides a vast collection of repositories where developers can host their code, making it easily accessible to others for reference, contribution, and collaboration. These repositories encompass a wide range of programming languages, frameworks, libraries, and tools, catering to diverse development needs.
+        </div>
+        <div class="box2">
+          <img src="media/default/computer.webp" alt="image">
+        </div>
+      </div>
+
+<!--CAROUSEL SECTION-->
+<div class="swiper-container">
+<div class="swiper-wrapper">
+  
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+</div> 
+{% endblock pageContent %}
+
+{% block ScriptBlock %}
+<script>
+var swiper = new Swiper(".swiper-container", {
+  pagination: {
+    el: ".swiper-pagination",
+    type: "progress-bar",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  loop: true,
+});
+</script>
+{% endblock ScriptBlock %}
