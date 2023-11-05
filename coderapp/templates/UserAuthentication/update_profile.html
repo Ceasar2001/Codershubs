@@ -3,7 +3,7 @@
     <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12">
         <div class="card card-default rounded-0 shadow">
             <div class="card-header">
-                <h4 class="card-title"><b>Update Profile</b></h4>
+                <h4 class="card-title fw-bold">Update Profile</h4>
             </div>
             <div class="card-body">
                 <div class="container-fluid">
@@ -18,31 +18,15 @@
                                             <input type="text" class="form-control rounded-0" name="first_name" id="first_name" value="{{ userData.first_name }}" required="required">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="middle_name" class="control-label">Middle Name</label>
-                                            <input type="text" class="form-control rounded-0" name="middle_name" id="middle_name" value="{{ userProfile.middle_name }}" required="required">
-                                        </div>
-                                        <div class="form-group mb-3">
                                             <label for="last_name" class="control-label">Last Name</label>
                                             <input type="text" class="form-control rounded-0" name="last_name" id="last_name" value="{{ userData.last_name }}" required="required">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="dob" class="control-label">Birthdate</label>
-                                            <input type="date" class="form-control rounded-0" name="dob" id="dob" value="{{ userProfile.dob|date:'Y-m-d' }}" required="required">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="contact" class="control-label">Contact</label>
-                                            <input type="text" class="form-control rounded-0" name="contact" id="contact" value="{{ userProfile.contact }}" required="required">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="address" class="control-label">Address</label>
-                                            <textarea rows="3" class="form-control rounded-0" name="address" id="address" required="required">{{ userProfile.address }}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group mb-3">
                                             <label for="email" class="control-label">Email</label>
                                             <input type="email" class="form-control rounded-0" name="email" id="email" value="{{ userData.email }}" required="required">
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group mb-3">
                                             <label for="username" class="control-label">Username</label>
                                             <input type="text" class="form-control rounded-0" name="username" id="username" value="{{ userData.username }}" required="required">
@@ -51,6 +35,11 @@
                                             <label for="current_password" class="control-label">Current Password</label>
                                             <input type="password" class="form-control rounded-0" name="current_password" id="current_password" required="required">
                                         </div>
+                                       <div class="form-group mb-3">
+                                            <label for="new_password" class="control-label">New Password</label>
+                                            <input type="password" class="form-control rounded-0" name="new_password" id="new_password" required="required">
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -65,9 +54,7 @@
                                 {% endfor %} {% endfor %}
                                 <div class="form-group mb-3">
                                     <div class="d-flex w-100 justify-content-end">
-                                        <button class="btn btn-sm rounded-0 btn-primary col-4">
-                                                Update
-                                            </button>
+                                        <button class="btn btn-sm rounded-4 btn-warning col-4 fw-bold fs-4">Update</button>
                                     </div>
                                 </div>
                             </div>

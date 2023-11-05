@@ -10,8 +10,11 @@
                 </div>
                 <div class="card-body">
                     <center>
-                        <img src="{% if post.banner %}{{ post.banner.url }}{% else %}{{ MEDIA_URL}}/media/default/python-django.png{% endif %}" alt="" class="img-fluid bg-gradient" id="view-post-banner">
+                        <img src="{% if post.banner %}{{ post.banner.url }}
+                        {% else %}
+                        {{ MEDIA_URL}}/media/default/python-django.png{% endif %}" alt="" class="img-fluid bg-gradient" id="view-post-banner" style="max-width: 500px;">
                     </center>
+                    
                     <h4 class="fw-bolder mt-4 text-start">{{ post.title }}</h4>
                     <hr>
                     <div class="lh-1 text-start">
@@ -19,15 +22,13 @@
                         <span class="me-5"><small>Category: <b>{{ post.category }}</b></small></span>
                         <span>
                             <small>
-                                <i class="fa fa-calendar-day"></i> Published: <b>{{ post.date_added|date:"F d, Y h:i A" }}</b>
+                                <i class="fa fa-calendar-day"></i> Posted on: <b>{{ post.date_added|date:"F d, Y h:i A" }}</b>
                             </small>
                         </span>
 
                     </div>
                     <div class="clear-fix py-3"></div>
-                    <div>{{ post.blog_post|safe }}
-                    </div>
-
+                    <pre>{{ post.code_post|linebreaksbr|safe }}</pre>
                 </div>
             </div>
         </div>

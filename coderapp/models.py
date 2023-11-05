@@ -10,12 +10,8 @@ from django.utils import timezone
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name='profile')
-    contact = models.CharField(max_length=250)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     middle_name = models.CharField(max_length=250, blank=True)
-    dob = models.DateField(blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
     avatar = models.ImageField(blank=True, null=True, upload_to='images/')
     user_type = models.IntegerField(default=2)
 
@@ -54,11 +50,12 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    blog_post = models.TextField()
+    
     banner = models.ImageField(blank=True, null=True, upload_to='images/')
     status = models.IntegerField(default=0)
     date_added = models.DateTimeField(default=timezone.now)
     date_updated = models.DateTimeField(auto_now=True)
+    code_post = models.TextField()
 
     def __str__(self):
         return self.title + " - " + self.category.name

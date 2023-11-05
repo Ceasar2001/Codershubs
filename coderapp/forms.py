@@ -52,7 +52,7 @@ class UpdateProfile(forms.ModelForm):
     last_name = forms.CharField(
         max_length=250, help_text="The Last Name field is required.")
     current_password = forms.CharField(max_length=250)
-
+    
     class Meta:
         model = User
         fields = ('email', 'username', 'first_name',
@@ -82,18 +82,16 @@ class UpdateProfile(forms.ModelForm):
         raise forms.ValidationError(
             f"The {user.username} mail is already exists/taken")
 
+class ProfileUpdateForm(forms.Form):
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control rounded-0'}))
 
 class UpdateProfileMeta(forms.ModelForm):
-    dob = forms.DateField(help_text="The Birthday field is required.")
-    contact = forms.CharField(
-        max_length=250, help_text="The Contact field is required.")
     middle_name = forms.CharField(
         max_length=250, help_text="The Middle Name field is required.")
-    address = forms.CharField(help_text="The Contact field is required.")
 
     class Meta:
         model = UserProfile
-        fields = ('dob', 'contact', 'middle_name', 'address')
+        fields = ('middle_name',)
 
 
 class UpdateProfileAvatar(forms.ModelForm):
@@ -120,7 +118,6 @@ class AddAvatar(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('avatar',)
-
 
 class SaveCategory(forms.ModelForm):
     name = forms.CharField(
@@ -153,7 +150,7 @@ class SavePost(forms.ModelForm):
     category = forms.IntegerField()
     author = forms.IntegerField()
     title = forms.Textarea()
-    blog_post = forms.Textarea()
+    code_post = forms.Textarea()
     status = forms.ChoiceField(help_text="Status Field is required.", choices=(
         ('1', 'Published'), ('2', 'Unpublished')))
 
@@ -163,11 +160,10 @@ class SavePost(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('category', 'author', 'title',
-                  'blog_post', 'status', 'banner')
+                  'code_post', 'status', 'banner')
 
     def clean_category(self):
         catId = self.cleaned_data['category']
-        # raise forms.ValidationError(f"Invalid Category Value.")
         try:
             category = Category.objects.get(id=catId)
             return category

@@ -1,40 +1,41 @@
-{% extends 'base.html' %}{% load static %}{% block pageContent %}
+{% extends 'base.html' %}
+{% load static %}
 
-<div class="col-lg-4 col-md-6 col-sm-12 col-12 mx-auto">
-   <div class="row justify-content-center">
-        <div class="card card-default rounded-0 shadow">
-            <div class="card-header">
-                <h4 class="card-title text-center"><b>Login</b></h4>
-            </div>
-            <div class="card-body">
-                <form id="login-user">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" placeholder="Enter your ID number" class="form-control rounded-0" name="username" id="username" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" placeholder="Enter password" class="form-control rounded-0" name="password" id="password" required="required">
-                    </div>
-                    <div class="form-group mt-4">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button class="btn btn-primary rounded-0">Login</button>
+{% block pageContent %}
+    <div class="col-lg-4 col-md-6 col-sm-12 col-12 mx-auto">
+        <div class="row justify-content-center">
+            <div class="card card-default rounded-0 shadow">
+                <div class="card-header">
+                    <h4 class="card-title text-center"><b>Login</b></h4>
+                </div>
+                <div class="card-body">
+                    <form id="login-user">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" placeholder="Enter your ID number" class="form-control rounded-0" name="username" id="username" required="required">
                         </div>
-                        <div class="text-center mt-2">
-                            <a href="{% url 'register-user' %}">Signup</a>
+                        <div class="form-group">
+                            <label for "password">Password</label>
+                            <input type="password" placeholder="Enter password" class="form-control rounded-0" name="password" id="password" required="required">
                         </div>
-                    </div>
-                    
-                </form>
+                        <div class="form-group mt-4">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <button class="btn btn-primary rounded-4">Login</button>
+                            </div>
+                            <div class="text-center mt-2">
+                                <p>don't have an account? <a href="{% url 'register-user' %}">Signup</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endblock pageContent %}
 
 
-
-{% endblock pageContent %} {% block ScriptBlock %}
+{% block ScriptBlock %}
 <script>
     $(function() {
         $('#login-user').submit(function(e) {
@@ -78,7 +79,7 @@
                         console.err(resp)
                     }
                     _this.prepend(el)
-                    el.show('slow')
+                    el show('slow')
                     $("html, body, .modal").scrollTop(0);
                     end_loader()
                 }

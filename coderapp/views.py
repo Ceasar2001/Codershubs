@@ -74,11 +74,10 @@ def registerUser(request):
             except:
                 profile = None
             if profile is None:
-                UserProfile(user=newUser, dob=data['dob'], contact=data['contact'], middle_name=data['middle_name'],
-                            address=data['address'], avatar=request.FILES['avatar']).save()
+                UserProfile(user=newUser, middle_name=data['middle_name'], avatar=request.FILES['avatar']).save()
             else:
                 UserProfile.objects.filter(id=profile.id).update(
-                    user=newUser, dob=data['dob'], contact=data['contact'], middle_name=data['middle_name'], address=data['address'])
+                    user=newUser, middle_name=data['middle_name'])
                 avatar = AddAvatar(
                     request.POST, request.FILES, instance=profile)
                 if avatar.is_valid():
@@ -91,7 +90,7 @@ def registerUser(request):
         else:
             context['reg_form'] = form
 
-    return render(request, 'register.html', context)
+    return render(request, 'UserAuthentication/register.html', context)
 
 
 @login_required
@@ -112,8 +111,6 @@ def update_profile(request):
     context['userProfile'] = profile
     if request.method == 'POST':
         data = request.POST
-        # if data['password1'] == '':
-        # data['password1'] = '123'
         form = UpdateProfile(data, instance=user)
         if form.is_valid():
             form.save()
@@ -129,7 +126,7 @@ def update_profile(request):
         else:
             context['form1'] = form
             form = UpdateProfile(instance=request.user)
-    return render(request, 'update_profile.html', context)
+    return render(request, 'UserAuthentication/update_profile.html', context)
 
 
 @login_required
@@ -151,7 +148,7 @@ def update_avatar(request):
         else:
             context['form'] = form
             form = UpdateProfileAvatar(instance=user)
-    return render(request, 'update_avatar.html', context)
+    return render(request, 'UserAuthentication/update_avatar.html', context)
 
 # Category
 
@@ -313,19 +310,19 @@ def post_by_category(request, pk=None):
         context['posts'] = posts
     return render(request, 'by_categories.html', context)
 
-
-def organizations(request):
+@login_required
+def category(request):
     categories = Category.objects.filter(status=1).all()
-    context['page_title'] = "Organizations"
+    context['page_title'] = "Category"
     context['category'] = categories
-    return render(request, 'organizations.html', context)
+    return render(request, 'category.html', context)
 
 
-def organizations_post(request):
+def postedcodes(request):
     categories = Category.objects.filter(status=1).all()
     context['page_title'] = "Posts"
     context['category'] = categories
-    return render(request, 'organizations_post.html', context)
+    return render(request, 'postedcodes.html', context)
 
 
 @login_required

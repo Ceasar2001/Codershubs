@@ -1,3 +1,5 @@
+
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -42,14 +44,6 @@
         gap: 5px;
         padding: 10px;
         margin-left: 20px;
-}
-.banner40{
-  margin: 0;
-  background-image: url(./media/default/header.png); 
-  background-repeat: no-repeat;
-  background-size: contain;
-
-  height: 650px;
 }
 
 button{
@@ -105,33 +99,6 @@ button a:hover{
   width: 600px;
 }
 
-/*Carousel CSS*/
-.swiper-container {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
-  margin-top: 250px;
-  overflow: inherit;
-}
-.swiper-container img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  overflow: inherit;
-}
-.swiper-container .swiper-scrollbar {
-  display: none;
-  overflow: inherit;
-}
-
-.swiper-button-next{
-  visibility: hidden;
-}
-
-.swiper-button-prev{
-  visibility: hidden;
-}
-
-.item img{
-  width: 100px;
+.about{
+  background-color: red;
 }

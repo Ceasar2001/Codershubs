@@ -7,8 +7,7 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     path('redirect-admin', RedirectView.as_view(url="/admin"), name="redirect-admin"),
     path('', views.home, name="home-page"),
-    path('login', auth_views.LoginView.as_view(template_name="login.html",
-         redirect_authenticated_user=True), name='login'),
+    path('login', auth_views.LoginView.as_view(template_name="UserAuthentication/login.html", redirect_authenticated_user=True), name='login'),
     path('userlogin', views.login_user, name="login-user"),
     path('user-register', views.registerUser, name="register-user"),
     path('logout', views.logoutuser, name='logout'),
@@ -28,6 +27,6 @@ urlpatterns = [
     path('delete_post', views.delete_post, name='delete-post'),
     path(r'view_post/<int:pk>', views.view_post, name='view-post'),
     path(r'<int:pk>', views.post_by_category, name='category-post'),
-    path('organizations', views.organizations, name='category-page'),
-    path('organizations_post', views.organizations_post, name='organizations-page'),
+    path('category', views.category, name='Category'),
+    path('postedcodes', views.postedcodes, name='Posts'),
 ]

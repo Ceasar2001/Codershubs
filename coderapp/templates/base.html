@@ -5,10 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% if page_title %}
-    <title>CODEGS</title>
+
+    <link href="\media\default\logos.png" rel="icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    {% if page_title %}
+    <title>CODERSHUB</title>
     {% else %}
-    <title>CODEGS</title>
+    <title>CODERSHUB</title>
     {% endif %}
     <link rel="stylesheet" href="{% static 'vendor/assets/font-awesome/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/assets/bootstrap/css/bootstrap.min.css' %}">
@@ -16,10 +20,8 @@
     <link rel="stylesheet" href="{% static 'vendor/assets/mdb-blogtemplate/css/mdb.min.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/assets/mdb-blogtemplate/css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/assets/default/css/style.css' %}">
-    <link rel="stylesheet" href="path/to/swiper.min.css">
     <link rel="stylesheet" href="{% static 'vendor/assets/default/css/home.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="path/to/swiper.min.css">
     
     <script src="path/to/swiper.min.js"></script>
     <script src="{% static 'vendor/assets/font-awesome/js/all.min.js' %}"></script>
@@ -34,10 +36,9 @@
 </head>
 
 <body>
-
     {% block TopNavigation %} {% include "TopNavigation.html" %} {% endblock TopNavigation %}
-    <main class="my-5">
-        <div class="container">
+    <main class="my-5 text-black">
+        <div class="container-fluid">
             {% if messages %}
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -49,12 +50,13 @@
                                 <button class="btn-close btn-sm text-sm" type="button" onclick="$(this).closest('.alert').remove()"></button>
                             </div>
                         </div>
-
                     </div>
                     {% endfor %}
                 </div>
-            </div>{% endif %} {% block pageContent %} {% endblock pageContent %}
-
+            </div>
+            {% endif %} 
+            {% block pageContent %} 
+            {% endblock pageContent %}
         </div>
     </main>
     {% block ScriptBlock %} {% endblock ScriptBlock %}
@@ -90,31 +92,37 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <h1><br></h1>
+        </div>
+    </div>
     <!--Footer-->
-    <footer class="bg-light text-lg-start">
-       <div class="text-center py-4 align-items-center">
-            <p>Follow us on social media</p>
-            <a href="https://www.youtube.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+    <footer class="text-lg-start mb-0 mt-auto">
+        <div class="text-center p-0 align-items-center">
+            <p class="text-black">Follow us on social media</p>
+            <a href="https://www.youtube.com" class="btn btn-primary m-1 rounded-5" role="button" rel="nofollow" target="_blank">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://www.facebook.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://www.facebook.com" class="btn btn-primary m-1 rounded-5" role="button" rel="nofollow" target="_blank">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://twitter.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://twitter.com" class="btn btn-primary m-1 rounded-5" role="button" rel="nofollow" target="_blank">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://github.com" class="btn btn-primary m-1" role="button" rel="nofollow" target="_blank">
+            <a href="https://github.com" class="btn btn-primary m-1 rounded-5" role="button" rel="nofollow" target="_blank">
                 <i class="fab fa-github"></i>
             </a>
         </div> 
 
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © {% now 'Y' %} Copyright:
-            <a class="text-dark" href="https://www.facebook.com/ceasareecleo" target="_blank">GROUPU</a>
+        <div class="text-center text-black">
+            © {% now 'Y' %} Copyright :
+            <a class="text-warning" target="_blank">GROUP-U</a>
         </div>
         <!-- Copyright -->
     </footer>
+
     <script>
         const loader = $('<div>')
         loader.attr('id', 'pre-loader')

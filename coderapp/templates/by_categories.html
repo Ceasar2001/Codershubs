@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ post.title }}</h5>
-                    <div class="card-text truncate-3">{{ post.blog_post|safe }} </div>
+                    <div class="card-text truncate-3">{{ post.code_post|safe }} </div>
                     <a href="{% url 'view-post' post.id %}" class="btn btn-primary">SEE MORE</a>
                 </div>
             </div>

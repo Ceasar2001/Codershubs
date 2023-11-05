@@ -29,14 +29,10 @@
       <div class="card shadow border">
         <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
           <img src="{% if post.banner %}{{ post.banner.url }}{% else %}{{ MEDIA_URL}}/media/default/python-django.png{% endif %}" class="img-fluid post-banner bg-gradient bg-dark" />
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
         </div>
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5>
-          <div class="card-text truncate-3">{{ post.blog_post|safe }}</div>
-          <a href="{% url 'view-post' post.id %}" class="btn btn-primary">SEE MORE</a>
+          <a href="{% url 'view-post' post.id %}" class="btn bg-warning text-white fw-bold">SEE MORE</a>
         </div>
       </div>
     </div>

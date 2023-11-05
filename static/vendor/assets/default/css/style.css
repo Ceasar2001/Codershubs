@@ -172,3 +172,8 @@ img.post-banner {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* footer style */
+#footer_info{
+    background-color: red;
+}
