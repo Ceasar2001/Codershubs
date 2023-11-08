@@ -1,30 +1,78 @@
-{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if page_title %}
+    <title>CODERSHUB</title>
+    {% else %}
+    <title>CODERSHUB</title>
+    {% endif %}
+
+    <link href="\media\default\logos.png" rel="icon">
+
+
+    <link rel="stylesheet" href="{% static 'vendor/assets/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/assets/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/assets/mdb-blogtemplate/css/mdb.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/assets/mdb-blogtemplate/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/assets/default/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/assets/default/css/home.css' %}">
+    <link rel="stylesheet" href="path/to/swiper.min.css">
+    
+    <script src="path/to/swiper.min.js"></script>
+    <script src="{% static 'vendor/assets/font-awesome/js/all.min.js' %}"></script>
+    <script src="{% static 'vendor/assets/default/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'vendor/assets/default/js/general.js' %}"></script>
+    <script src="{% static 'vendor/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/assets/bootstrap/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/assets/mdb-blogtemplate/js/mdb.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-dark" style="padding-top: 10%;">
+
 {% load static %}
 
 {% block pageContent %}
-    <div class="col-lg-4 col-md-6 col-sm-12 col-12 mx-auto">
-        <div class="row justify-content-center">
-            <div class="card card-default rounded-0 shadow">
+
+<div class="container-fluid pt-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+            <div class="card rounded-0 shadow">
+                <a class="nav-link text-warning fw-bold justify-content-end fw-bold" href="{% url 'home-page' %}">Home</a>
                 <div class="card-header">
-                    <h4 class="card-title text-center"><b>Login</b></h4>
+                    <h4 class="card-title text-center fw-bold">Login</h4>
                 </div>
+                
                 <div class="card-body">
                     <form id="login-user">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" placeholder="Enter your ID number" class="form-control rounded-0" name="username" id="username" required="required">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control rounded-0" id="username" name="username" placeholder="Enter your ID number" required="required">
                         </div>
-                        <div class="form-group">
-                            <label for "password">Password</label>
-                            <input type="password" placeholder="Enter password" class="form-control rounded-0" name="password" id="password" required="required">
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control rounded-0" id="password" name="password" placeholder="Enter password" required="required">
                         </div>
-                        <div class="form-group mt-4">
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember_me" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember Me
+                                </label>
+                            </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <button class="btn btn-primary rounded-4">Login</button>
+                                <button class="btn btn-primary rounded-pill">Login</button>
                             </div>
                             <div class="text-center mt-2">
-                                <p>don't have an account? <a href="{% url 'register-user' %}">Signup</a></p>
+                                <p>Don't have an account? <a href="{% url 'register-user' %}">Signup</a></p>
                             </div>
                         </div>
                     </form>
@@ -32,6 +80,8 @@
             </div>
         </div>
     </div>
+</div>
+
 {% endblock pageContent %}
 
 
@@ -79,7 +129,7 @@
                         console.err(resp)
                     }
                     _this.prepend(el)
-                    el show('slow')
+                    el.show('slow')
                     $("html, body, .modal").scrollTop(0);
                     end_loader()
                 }
@@ -88,3 +138,6 @@
     })
 </script>
 {% endblock ScriptBlock %}
+
+</body>
+</html>

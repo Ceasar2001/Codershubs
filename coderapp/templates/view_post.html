@@ -4,20 +4,17 @@
 <section class="text-center">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row justify-content-center">
-            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 card card-default rounded-0 shadow">
-                <div class="card-header">
-                    <h4 class="card-title fw-bold"></h4>
-                </div>
-                <div class="card-body">
+            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 card card-default rounded-0 shadow bg-dark">
+                <div class="card-body ">
                     <center>
                         <img src="{% if post.banner %}{{ post.banner.url }}
                         {% else %}
-                        {{ MEDIA_URL}}/media/default/python-django.png{% endif %}" alt="" class="img-fluid bg-gradient" id="view-post-banner" style="max-width: 500px;">
+                        {{ MEDIA_URL}}/media/default/python-django.png{% endif %}" alt="" class="img-fluid bg-gradient" id="view-post-banner" style="max-width: 290px;">
                     </center>
                     
-                    <h4 class="fw-bolder mt-4 text-start">{{ post.title }}</h4>
+                    <h4 class="fw-bold mt-4 text-start text-white">Title: {{ post.title }}</h4>
                     <hr>
-                    <div class="lh-1 text-start">
+                    <div class="lh-1 text-start text-white">
                         <span class="me-5"><small>Author: <b>{{ post.author }}</b></small></span>
                         <span class="me-5"><small>Category: <b>{{ post.category }}</b></small></span>
                         <span>
@@ -28,12 +25,18 @@
 
                     </div>
                     <div class="clear-fix py-3"></div>
-                    <pre>{{ post.code_post|linebreaksbr|safe }}</pre>
+                    <div class="text-white fs-5">
+                        <pre>{{ post.code_post|linebreaksbr|safe }}</pre>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-</div>{% endblock pageContent %}
+<div class="col p-lg-5">
+    <div class="row p-lg-5">
+        <div class="col p-lg-5">
+        </div>
+    </div>
+</div>
+{% endblock pageContent %}

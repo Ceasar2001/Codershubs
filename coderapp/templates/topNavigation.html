@@ -3,13 +3,11 @@
     <!-- Intro settings -->
     <style>
         #intro {
-            /* Margin to fix overlapping fixed navbar */
             margin-top: 58px;
         }
         
         @media (max-width: 991px) {
             #intro {
-                /* Margin to fix overlapping fixed navbar */
                 margin-top: 45px;
             }
         }
@@ -23,11 +21,13 @@
             width: 50px;
             height: 50px;
         }
-
     </style>
 
+
+    
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark bg-opacity-50">
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary bg-opacity-50">
         <div class="container-fluid">
             <!-- Navbar brand -->
             <div class="logo">
@@ -70,9 +70,8 @@
                     {% endif %}
                     <li class="nav-item me-3 me-lg-0">
                         <a class="nav-link" href="{% url 'profile' %}">
-                            <span class="me-1 text-white"><img src="{{ user.profile.avatar.url }}" alt="User Avatar" id="user-avatar" class="img-thumbnail rounded-circle"> Hello, {{ user.first_name }} Welcome</span>
+                            <span class="me-1 text-white">Hello, {{ user.first_name }} Welcome</span>
                         </a>
-                        
                     </li>
                     <li class="nav-item me-3 me-lg-0">
                         <a class="nav-link text-white opacity-50" href="{% url 'logout' %}">Logout</a>

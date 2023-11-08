@@ -18,8 +18,8 @@ class UserRegistration(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password1',
-                  'password2', 'first_name', 'middle_name', 'last_name')
+        fields = ('email', 'username', 'password1', 'password2', 'first_name', 'middle_name', 'last_name')
+        
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -88,7 +88,6 @@ class ProfileUpdateForm(forms.Form):
 class UpdateProfileMeta(forms.ModelForm):
     middle_name = forms.CharField(
         max_length=250, help_text="The Middle Name field is required.")
-
     class Meta:
         model = UserProfile
         fields = ('middle_name',)

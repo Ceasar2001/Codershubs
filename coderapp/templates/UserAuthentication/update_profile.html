@@ -18,15 +18,20 @@
                                             <input type="text" class="form-control rounded-0" name="first_name" id="first_name" value="{{ userData.first_name }}" required="required">
                                         </div>
                                         <div class="form-group mb-3">
+                                            <label for="middle_name" class="control-label">Middle Name</label>
+                                            <input type="text" class="form-control rounded-0" name="middle_name" id="middle_name" value="{{ userData.middle_name }}" required="required">
+                                        </div>
+                                        <div class="form-group mb-3">
                                             <label for="last_name" class="control-label">Last Name</label>
                                             <input type="text" class="form-control rounded-0" name="last_name" id="last_name" value="{{ userData.last_name }}" required="required">
                                         </div>
+                                        
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group mb-3">
                                             <label for="email" class="control-label">Email</label>
                                             <input type="email" class="form-control rounded-0" name="email" id="email" value="{{ userData.email }}" required="required">
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="form-group mb-3">
                                             <label for="username" class="control-label">Username</label>
                                             <input type="text" class="form-control rounded-0" name="username" id="username" value="{{ userData.username }}" required="required">
@@ -35,10 +40,10 @@
                                             <label for="current_password" class="control-label">Current Password</label>
                                             <input type="password" class="form-control rounded-0" name="current_password" id="current_password" required="required">
                                         </div>
-                                       <div class="form-group mb-3">
+                                       {% comment %} <div class="form-group mb-3">
                                             <label for="new_password" class="control-label">New Password</label>
                                             <input type="password" class="form-control rounded-0" name="new_password" id="new_password" required="required">
-                                        </div>
+                                        </div> {% endcomment %}
 
                                     </div>
                                 </div>

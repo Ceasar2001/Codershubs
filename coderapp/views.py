@@ -11,6 +11,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from coderapp.models import UserProfile, Category, Post
 
+from .forms import UpdateProfileAvatar
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.forms import AuthenticationForm
+
+
 from coderapp.forms import UserRegistration, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, SaveCategory, SavePost, AddAvatar
 
 category_list = Category.objects.exclude(status=2).all()
@@ -27,12 +32,16 @@ def login_user(request):
     resp = {"status": 'failed', 'msg': ''}
     username = ''
     password = ''
+    
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
-
-        user = authenticate(username=username, password=password)
-        if user is not None:
+        
+        # Use AuthenticationForm to authenticate the user
+        form = AuthenticationForm(data=request.POST)
+        
+        if form.is_valid():
+            user = form.get_user()
             if user.is_active:
                 login(request, user)
                 resp['status'] = 'success'
@@ -41,6 +50,7 @@ def login_user(request):
         else:
             resp['msg'] = "Incorrect username or password"
     return HttpResponse(json.dumps(resp), content_type='application/json')
+
 
 # Logout
 
@@ -57,6 +67,39 @@ def home(request):
     print(request.user)
     return render(request, 'home.html', context)
 
+# def registerUser(request):
+#     user = request.user
+#     if user.is_authenticated:
+#         return redirect('home-page')
+#     context['page_title'] = "Register User"
+#     if request.method == 'POST':
+#         data = request.POST
+#         form = UserRegistration(data)
+#         if form.is_valid():
+#             form.save()
+#             newUser = User.objects.all().last()
+#             try:
+#                 profile = UserProfile.objects.get(user=newUser)
+#             except:
+#                 profile = None
+#             if profile is None:
+#                 UserProfile(user=newUser, middle_name=data['middle_name'], avatar=request.FILES['avatar']).save()
+#             else:
+#                 UserProfile.objects.filter(id=profile.id).update(
+#                     user=newUser, middle_name=data['middle_name'])
+#                 avatar = AddAvatar(
+#                     request.POST, request.FILES, instance=profile)
+#                 if avatar.is_valid():
+#                     avatar.save()
+#             username = form.cleaned_data.get('username')
+#             pwd = form.cleaned_data.get('password1')
+#             loginUser = authenticate(username=username, password=pwd)
+#             login(request, loginUser)
+#             return redirect('home-page')
+#         else:
+#             context['reg_form'] = form
+
+#     return render(request, 'UserAuthentication/register.html', context)
 
 def registerUser(request):
     user = request.user
@@ -74,7 +117,7 @@ def registerUser(request):
             except:
                 profile = None
             if profile is None:
-                UserProfile(user=newUser, middle_name=data['middle_name'], avatar=request.FILES['avatar']).save()
+                UserProfile(user=newUser, avatar=request.FILES['avatar']).save()
             else:
                 UserProfile.objects.filter(id=profile.id).update(
                     user=newUser, middle_name=data['middle_name'])
@@ -98,7 +141,6 @@ def profile(request):
     context = {
         'page_title': "My Profile"
     }
-
     return render(request, 'profile.html', context)
 
 
@@ -131,13 +173,18 @@ def update_profile(request):
 
 @login_required
 def update_avatar(request):
+    context = {}
     context['page_title'] = "Update Avatar"
-    user = User.objects.get(id=request.user.id)
-    context['userData'] = user
-    context['userProfile'] = user.profile
-    img = user.profile.avatar.url
+    user = request.user
+
+    # Check if the user has an avatar associated with their profile
+    if user.profile.avatar:
+        img = user.profile.avatar.url
+    else:
+        img = None
 
     context['img'] = img
+
     if request.method == 'POST':
         form = UpdateProfileAvatar(request.POST, request.FILES, instance=user)
         if form.is_valid():
@@ -147,12 +194,16 @@ def update_avatar(request):
             return redirect("profile")
         else:
             context['form'] = form
-            form = UpdateProfileAvatar(instance=user)
+    else:
+        form = UpdateProfileAvatar(instance=user)
+
+    context['form'] = form
+    context['userData'] = user
+    context['userProfile'] = user.profile
+
     return render(request, 'UserAuthentication/update_avatar.html', context)
 
 # Category
-
-
 @login_required
 def category_mgt(request):
     categories = Category.objects.all()
