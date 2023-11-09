@@ -4,17 +4,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <link href="\media\default\logos.png" rel="icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     {% if page_title %}
     <title>CODERSHUB</title>
     {% else %}
     <title>CODERSHUB</title>
     {% endif %}
-
-    <link href="\media\default\logos.png" rel="icon">
-
-
     <link rel="stylesheet" href="{% static 'vendor/assets/font-awesome/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/assets/select2/dist/css/select2.min.css' %}">
@@ -33,6 +32,7 @@
     <script src="{% static 'vendor/assets/bootstrap/js/popper.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'vendor/assets/mdb-blogtemplate/js/mdb.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    {% block headerContent %} {% endblock headerContent %}
 
 </head>
 <body class="bg-dark" style="padding-top: 10%;">
@@ -62,12 +62,6 @@
                             <input type="password" class="form-control rounded-0" id="password" name="password" placeholder="Enter password" required="required">
                         </div>
                         <div class="mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember_me" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">
-                                    Remember Me
-                                </label>
-                            </div>
                             <div class="d-flex justify-content-center align-items-center">
                                 <button class="btn btn-primary rounded-pill">Login</button>
                             </div>
@@ -81,13 +75,22 @@
         </div>
     </div>
 </div>
-
 {% endblock pageContent %}
 
 
 {% block ScriptBlock %}
 <script>
     $(function() {
+        function start_loader() {
+            // Code to start the loader
+            // Example: $('body').addClass('loading');
+        }
+
+        function end_loader() {
+            // Code to end the loader
+            // Example: $('body').removeClass('loading');
+        }
+
         $('#login-user').submit(function(e) {
             e.preventDefault();
             var _this = $(this)

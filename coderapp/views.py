@@ -32,16 +32,12 @@ def login_user(request):
     resp = {"status": 'failed', 'msg': ''}
     username = ''
     password = ''
-    
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
-        
-        # Use AuthenticationForm to authenticate the user
-        form = AuthenticationForm(data=request.POST)
-        
-        if form.is_valid():
-            user = form.get_user()
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
             if user.is_active:
                 login(request, user)
                 resp['status'] = 'success'
@@ -50,6 +46,7 @@ def login_user(request):
         else:
             resp['msg'] = "Incorrect username or password"
     return HttpResponse(json.dumps(resp), content_type='application/json')
+
 
 
 # Logout
