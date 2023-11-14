@@ -15,6 +15,12 @@ from .forms import UpdateProfileAvatar
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.forms import AuthenticationForm
 
+from django.shortcuts import render, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
+from django.http import JsonResponse
+
 
 from coderapp.forms import UserRegistration, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, SaveCategory, SavePost, AddAvatar
 
@@ -27,11 +33,14 @@ context = {
 # login
 
 
+@csrf_exempt
 def login_user(request):
     logout(request)
     resp = {"status": 'failed', 'msg': ''}
     username = ''
     password = ''
+    remember_me = request.POST.get('remember_me')  # Check if the "Remember Me" checkbox is checked
+
     if request.POST:
         username = request.POST['username']
         password = request.POST['password']
@@ -40,13 +49,21 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+
+                # Set a longer session timeout if "Remember Me" is checked
+                if not remember_me:
+                    request.session.set_expiry(0)  # Session expires when the browser is closed
+                else:
+                    # Set a longer session timeout, for example, 1 week (in seconds)
+                    request.session.set_expiry(604800)
+
                 resp['status'] = 'success'
             else:
                 resp['msg'] = "Incorrect username or password"
         else:
             resp['msg'] = "Incorrect username or password"
-    return HttpResponse(json.dumps(resp), content_type='application/json')
 
+    return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
 # Logout
