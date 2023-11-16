@@ -11,6 +11,7 @@ from django.utils import timezone
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    email_confirmed = models.BooleanField(default=False)
     middle_name = models.CharField(max_length=250, blank=True)
     avatar = models.ImageField(blank=True, null=True, upload_to='images/')
     user_type = models.IntegerField(default=2)

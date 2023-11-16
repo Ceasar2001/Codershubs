@@ -9,7 +9,7 @@ urlpatterns = [
     path('', views.home, name="home-page"),
     path('login', auth_views.LoginView.as_view(template_name="UserAuthentication/login.html", redirect_authenticated_user=True), name='login'),
     path('userlogin', views.login_user, name="login-user"),
-    path('user-register', views.registerUser, name="register-user"),
+    path('user-register/', views.registerUser, name="register-user"),
     path('logout', views.logoutuser, name='logout'),
     path('profile', views.profile, name='profile'),
     path('update-profile', views.update_profile, name='update-profile'),
@@ -29,4 +29,7 @@ urlpatterns = [
     path(r'<int:pk>', views.post_by_category, name='category-post'),
     path('category', views.category, name='Category'),
     path('postedcodes', views.postedcodes, name='Posts'),
+    path('account_activation_sent/', views.account_activation_sent, name='account_activation_sent'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('account_activation_complete/', views.account_activation_complete, name='account_activation_complete'),
 ]
