@@ -17,6 +17,7 @@ urlpatterns = [
     path('update-avatar', views.update_avatar, name='update-avatar'),
     path('category_mgt', views.category_mgt, name='category-mgt'),
     path('manage_category', views.manage_category, name='manage-category'),
+    path('manage-category/add', views.manage_category, name='add_category'),
     path(r'manage_category/<int:pk>', views.manage_category, name='edit-category'),
     path('save_category', views.save_category, name='save-category'),
     path('delete_category', views.delete_category, name='delete-category'),

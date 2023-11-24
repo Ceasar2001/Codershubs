@@ -1,8 +1,24 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 
 {% block title %}Activation Email Sent{% endblock %}
 
 {% block content %}
   <h2>Activation Email Sent</h2>
   <p>An activation link has been sent to your email address. Please check your inbox and click the activation link to activate your account.</p>
+{% endblock %} {% endcomment %}
+{% extends "base.html" %}
+
+{% block title %}Activation Email Sent{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h2 class="mb-4">Activation Email Sent</h2>
+        <p class="lead">
+          An activation link has been sent to your email address. Please check your inbox and click the activation link to activate your account.
+        </p>
+      </div>
+    </div>
+  </div>
 {% endblock %}

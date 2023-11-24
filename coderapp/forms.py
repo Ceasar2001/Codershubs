@@ -134,9 +134,9 @@ class SaveCategory(forms.ModelForm):
         id = self.instance.id if not self.instance == None else ''
         try:
             if id.isnumeric() and id != '':
-                category = Category.objects.exclude(id=id).get(name=name)
+                Category = Category.objects.exclude(id=id).get(name=name)
             else:
-                category = Category.objects.get(name=name)
+                Category = Category.objects.get(name=name)
         except Exception as e:
             if name == '':
                 raise forms.ValidationError(f"Category field is required.")
@@ -176,3 +176,9 @@ class SavePost(forms.ModelForm):
             return author
         except:
             raise forms.ValidationError(f"Invalid User Value.")
+        
+##
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'description', 'status']

@@ -49,10 +49,6 @@
                 <div class="card-header">
                     <h4 class="card-title text-center fw-bold">Login</h4>
                 </div>
-                <div>
-                    {%load socialaccount %}
-                    <a href="{% provider_login_url 'google' %}?next=/">google</a>
-                </div>
                 <div class="card-body">
                     <form id="login-user">
                         {% csrf_token %}
@@ -74,6 +70,11 @@
                             </div>
                             <div class="text-center mt-2">
                                 <p>Don't have an account? <a href="{% url 'register-user' %}">Signup</a></p>
+                                <p>or</p>
+                                <div class="justify-content-center">
+                                    {%load socialaccount %}
+                                    <a href="{% provider_login_url 'google' %}?next=/">Login using google</a>
+                                </div>
                             </div>
                         </div>
                     </form>

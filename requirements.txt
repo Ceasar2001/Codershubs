@@ -1,1 +1,3 @@
 Pillow
+pip install django-allauth
+pip install six

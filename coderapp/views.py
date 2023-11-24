@@ -29,6 +29,7 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import JsonResponse
 
+from .forms import CategoryForm
 
 from coderapp.forms import UserRegistration, UpdateProfile, UpdateProfileMeta, UpdateProfileAvatar, SaveCategory, SavePost, AddAvatar
 
@@ -88,40 +89,6 @@ def home(request):
     context['posts'] = posts
     print(request.user)
     return render(request, 'home.html', context)
-
-# def registerUser(request):
-#     user = request.user
-#     if user.is_authenticated:
-#         return redirect('home-page')
-#     context['page_title'] = "Register User"
-#     if request.method == 'POST':
-#         data = request.POST
-#         form = UserRegistration(data)
-#         if form.is_valid():
-#             form.save()
-#             newUser = User.objects.all().last()
-#             try:
-#                 profile = UserProfile.objects.get(user=newUser)
-#             except:
-#                 profile = None
-#             if profile is None:
-#                 UserProfile(user=newUser, middle_name=data['middle_name'], avatar=request.FILES['avatar']).save()
-#             else:
-#                 UserProfile.objects.filter(id=profile.id).update(
-#                     user=newUser, middle_name=data['middle_name'])
-#                 avatar = AddAvatar(
-#                     request.POST, request.FILES, instance=profile)
-#                 if avatar.is_valid():
-#                     avatar.save()
-#             username = form.cleaned_data.get('username')
-#             pwd = form.cleaned_data.get('password1')
-#             loginUser = authenticate(username=username, password=pwd)
-#             login(request, loginUser)
-#             return redirect('home-page')
-#         else:
-#             context['reg_form'] = form
-
-#     return render(request, 'UserAuthentication/register.html', context)
 
 def registerUser(request):
     user = request.user
@@ -225,7 +192,6 @@ def update_avatar(request):
 
     return render(request, 'UserAuthentication/update_avatar.html', context)
 
-# Category
 @login_required
 def category_mgt(request):
     categories = Category.objects.all()
@@ -233,10 +199,21 @@ def category_mgt(request):
     context['categories'] = categories
     return render(request, 'category_mgt.html', context)
 
+@login_required
+def add_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_category')  # Redirect to the manage category page
+    else:
+        form = CategoryForm()
+
+    return render(request, 'add_category.html', {'form': form})
 
 @login_required
 def manage_category(request, pk=None):
-    # category = Category.objects.all()
+    category = Category.objects.all()
     if pk == None:
         category = {}
     elif pk > 0:
