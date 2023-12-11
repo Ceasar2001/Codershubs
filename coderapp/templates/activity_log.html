@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity Log</title>
+</head>
+<body>
+    <h1>Activity Log</h1>
+    {% if logs %}
+        <p>Logs are available.</p>
+        <ul>
+            {% for log in logs %}
+                <li>{{ log.timestamp }} - {{ log.user }} - {{ log.action }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No logs available.</p>
+    {% endif %}
+</body>
+</html>
