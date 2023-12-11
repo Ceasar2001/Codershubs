@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'coderapp.apps.ProjectappConfig',
     'django.contrib.humanize',
 
+    'social_django',
+    
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -43,7 +45,8 @@ SOCIALACCOUNT_PROVIDERS = {
             "profile",
             "email"
         ],
-        "AUTH_PARAMS": {"access_type": "online"}
+        "AUTH_PARAMS": {
+            "access_type":"online"}
     }
 }
 
@@ -66,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'codeproject.urls'
@@ -81,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -152,6 +157,10 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
 AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '925241608499-prohvpinprcb90hckkp0c8kqn4dktv49.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

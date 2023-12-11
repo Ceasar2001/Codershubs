@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
+from .views import activity_log
+
 
 urlpatterns = [
     path('redirect-admin', RedirectView.as_view(url="/admin"), name="redirect-admin"),
@@ -11,7 +13,7 @@ urlpatterns = [
     path('userlogin', views.login_user, name="login-user"),
     path('user-register/', views.registerUser, name="register-user"),
     path('logout', views.logoutuser, name='logout'),
-    path('profile', views.profile, name='profile'),
+    path('profile/', views.profile, name='profile'),
     path('update-profile', views.update_profile, name='update-profile'),
     path('submit_reg', views.submit_reg, name='submit-reg'),
     path('update-avatar', views.update_avatar, name='update-avatar'),
@@ -33,4 +35,6 @@ urlpatterns = [
     path('account_activation_sent/', views.account_activation_sent, name='account_activation_sent'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('account_activation_complete/', views.account_activation_complete, name='account_activation_complete'),
+    path('activity-log/', activity_log, name='activity_log'),
+    path("change_password/", views.change_password, name="change_password"),
 ]

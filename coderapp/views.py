@@ -406,3 +406,44 @@ def activate(request, uidb64, token):
 @login_required
 def account_activation_complete(request):
     return render(request, 'account_activation_complete.html')
+
+
+@login_required
+def change_password(request):
+    if request.method == "POST":
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        user = request.user
+
+        # Check if the current password is correct
+        if not user.check_password(current_password):
+            messages.error(request, 'Current password is incorrect.')
+            return render(request, "change_password.html")
+
+        # Check if the new password and confirm password match
+        if new_password != confirm_password:
+            messages.error(request, 'New password and confirm password do not match.')
+            return render(request, "change_password.html")
+
+        # Change the user's password
+        user.set_password(new_password)
+        user.save()
+
+        messages.success(request, 'Password successfully changed.')
+        return redirect('home-page')
+
+    return render(request, "change_password.html")
+
+from django.shortcuts import render
+from .models import ActivityLog
+
+@login_required
+def activity_log(request):
+    logs = ActivityLog.objects.all()
+    return render(request, 'activity_log.html', {'logs': logs})
+
+
+
+

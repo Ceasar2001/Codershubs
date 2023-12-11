@@ -1,17 +1,18 @@
-{% extends "base.html" %} {% load humanize %} {% block pageContent %}
+{% extends "base.html" %}
+{% load humanize static %}
+{% block pageContent %}
+
 
 <!--Section: Content-->
 <section class="text-center">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="row justify-content-center">
-            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 card card-default rounded-0 shadow bg-dark">
-                <div class="card-body ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 card card-default rounded-0 shadow bg-dark">
+                <div class="card-body">
                     <center>
-                        <img src="{% if post.banner %}{{ post.banner.url }}
-                        {% else %}
-                        {{ MEDIA_URL}}/media/default/python-django.png{% endif %}" alt="" class="img-fluid bg-gradient" id="view-post-banner" style="max-width: 290px;">
+                        <img src="{% if post.banner %}{{ post.banner.url }}{% else %}{{ MEDIA_URL}}/media/default/python-django.png{% endif %}" alt="" class="img-fluid bg-gradient" id="view-post-banner" style="max-width: 290px;">
                     </center>
-                    
+
                     <h4 class="fw-bold mt-4 text-start text-white">Title: {{ post.title }}</h4>
                     <hr>
                     <div class="lh-1 text-start text-white">
@@ -22,21 +23,48 @@
                                 <i class="fa fa-calendar-day"></i> Posted on: <b>{{ post.date_added|date:"F d, Y h:i A" }}</b>
                             </small>
                         </span>
-
                     </div>
                     <div class="clear-fix py-3"></div>
                     <div class="text-white fs-5">
-                        <pre>{{ post.code_post|linebreaksbr|safe }}</pre>
+                        <pre class="text-start" id="codePost">{{ post.code_post|linebreaksbr|safe }}</pre>
+                        <!-- Copy button -->
+                        <button class="btn btn-primary rounded-pill" onclick="copyToClipboard()">Copy Code</button>
+                        <!-- Display a message when text is copied -->
+                        <div class="opacity-50" id="copyMessage" style="display:none;"><pre>Code copied to clipboard!</pre></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<div class="col p-lg-5">
-    <div class="row p-lg-5">
-        <div class="col p-lg-5">
-        </div>
-    </div>
-</div>
+
+<!-- Include the JavaScript function -->
+<script>
+    function copyToClipboard() {
+        /* Get the code to copy */
+        var codeToCopy = document.getElementById("codePost");
+
+        /* Create a textarea to hold the code temporarily */
+        var tempInput = document.createElement("textarea");
+        tempInput.value = codeToCopy.innerText;
+        document.body.appendChild(tempInput);
+
+        /* Select and copy the code */
+        tempInput.select();
+        document.execCommand("copy");
+
+        /* Remove the temporary textarea */
+        document.body.removeChild(tempInput);
+
+        /* Display the copy message */
+        var copyMessage = document.getElementById("copyMessage");
+        copyMessage.style.display = "block";
+
+        /* Hide the message after a short delay (e.g., 2 seconds) */
+        setTimeout(function () {
+            copyMessage.style.display = "none";
+        }, 2000);
+    }
+</script>
+
 {% endblock pageContent %}
